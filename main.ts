@@ -94,12 +94,12 @@ async function callElevenLabs(text: string, api_key: string, voice_id: string) {
 	}
 
 	const fileName = "eleven-labs-audio/" + Date.now() + ".mp3";
-	await this.app.vault.create(fileName, blob.arrayBuffer);
+	await this.app.vault.create(fileName, blob.arrayBuffer.toString());
 
 	return audioEl;
 }
 
-async function naturalSoundingText(text: string, openai_api_key: string, system_prompt: string = "Convert the following text to natural sounding spoken text, similar to a human voice.") {
+async function naturalSoundingText(text: string, openai_api_key: string, system_prompt = "Convert the following text to natural sounding spoken text, similar to a human voice.") {
 	const res = await callOpenAIAPI(openai_api_key, [
 		{
 			role: "system",
@@ -244,7 +244,7 @@ export default class MyPlugin extends Plugin {
 					this.settings.elevenLabsAPIKey,
 					"TxGEqnHWrfWFTfGW9XjX"
 				);
-				document.body.appendChild(audioEl);
+				// document.body.appendChild(audioEl);
 			},
 		});
 
